@@ -567,7 +567,7 @@ After completing Phase 8, consider these enhancements:
 
 ### LLM Email Rewriter
 - Implement `LLMEmailGenerator` class
-- Use OpenAI/Claude API for tone improvement
+- Use Groq API for tone improvement
 - Add post-generation validation
 - Quality scoring before preview
 

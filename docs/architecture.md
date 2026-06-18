@@ -263,7 +263,7 @@ def generate_email(contact: Contact, config: AppConfig) -> EmailDraft:
 
 **Template strategy (MVP):** deterministic Python f-string / `string.Template`.
 
-**Stretch:** `LLMEmailGenerator` implementing the same `generate_email` interface, with a **post-generation validator** (word count, banned phrases, no fake referral language).
+**Stretch:** `LLMEmailGenerator` implementing the same `generate_email` interface using Groq API, with a **post-generation validator** (word count, banned phrases, no fake referral language).
 
 ---
 
@@ -491,7 +491,7 @@ Guardrails are **cross-cutting**—implemented in orchestrator + generator + con
 | Execution | `python main.py` from project root in Cursor terminal |
 | State | Stateless between runs; state in `outreach_log.csv` |
 | Secrets | `.env` local only |
-| Dependencies | `requirements.txt` (minimal: `python-dotenv`, optional `google-api-python-client`) |
+| Dependencies | `requirements.txt` (minimal: `python-dotenv`, optional `groq`, `google-api-python-client`) |
 
 No database, queue, or web server in MVP.
 
@@ -553,7 +553,7 @@ flowchart TB
 | Gmail drafts | `GmailApiEmailSender` |
 | CSV upload | `input_loader.py` CSV parser |
 | Streamlit UI | `ui/app.py` calls same pipeline functions |
-| LLM rewriting | `LLMEmailGenerator` + `EmailQualityValidator` |
+| LLM rewriting | `LLMEmailGenerator` using Groq API + `EmailQualityValidator` |
 | Quality / spam score | Post-processor plugin before preview |
 | Multiple subjects | Generator returns `list[str]`, user picks in preview |
 | Follow-ups | New `followup_generator.py` + log links `parent_id` |
