@@ -1,0 +1,60 @@
+[
+  {
+    "recipient_name": "Priya Sharma",
+    "recipient_email": "priya.sharma@example.com",
+    "company": "Acme AI",
+    "role": "Backend Engineering Intern",
+    "job_url": "https://acme-ai.example.com/jobs/backend-intern",
+    "personalization_note": "Company recently launched an AI workflow automation product",
+    "candidate_name": "Your Name",
+    "candidate_background": "Python developer interested in automation and AI agents",
+    "portfolio_url": "https://github.com/yourname",
+    "linkedin_url": "https://linkedin.com/in/yourname"
+  },
+  {
+    "recipient_name": "John Chen",
+    "recipient_email": "john.chen@techstartup.io",
+    "company": "TechStartup",
+    "role": "Full Stack Developer",
+    "job_url": "https://techstartup.io/careers/fullstack",
+    "personalization_note": "Building a modern SaaS platform for remote teams",
+    "candidate_name": "Your Name",
+    "candidate_background": "Full-stack developer with React and Python experience",
+    "portfolio_url": "https://github.com/yourname"
+  },
+  {
+    "recipient_name": "Sarah Johnson",
+    "recipient_email": "sarah.j@innovatecorp.com",
+    "company": "InnovateCorp",
+    "role": "Software Engineer",
+    "job_url": "https://innovatecorp.com/jobs/software-engineer",
+    "personalization_note": "Expanding their cloud infrastructure team",
+    "candidate_name": "Your Name",
+    "candidate_background": "Software engineer focused on cloud-native applications",
+    "portfolio_url": "https://github.com/yourname",
+    "resume_link": "https://drive.google.com/your-resume"
+  },
+  {
+    "recipient_name": "Michael Brown",
+    "recipient_email": "m.brown@datatech.com",
+    "company": "DataTech Solutions",
+    "role": "Data Engineer",
+    "job_url": "https://datatech.com/careers/data-engineer",
+    "personalization_note": "Working on large-scale data processing pipelines",
+    "candidate_name": "Your Name",
+    "candidate_background": "Data engineer with Python and SQL expertise",
+    "portfolio_url": "https://github.com/yourname"
+  },
+  {
+    "recipient_name": "Emily Davis",
+    "recipient_email": "emily.d@cloudplatform.com",
+    "company": "CloudPlatform",
+    "role": "DevOps Engineer",
+    "job_url": "https://cloudplatform.com/jobs/devops",
+    "personalization_note": "Launching new Kubernetes-based services",
+    "candidate_name": "Your Name",
+    "candidate_background": "DevOps engineer with Kubernetes and CI/CD experience",
+    "portfolio_url": "https://github.com/yourname",
+    "linkedin_url": "https://linkedin.com/in/yourname"
+  }
+]
