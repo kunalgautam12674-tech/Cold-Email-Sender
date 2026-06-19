@@ -239,7 +239,7 @@ def display_log_file():
         try:
             df = pd.read_csv(log_path)
             st.markdown('<h3>📊 Outreach Log</h3>', unsafe_allow_html=True)
-            st.dataframe(df, use_container_width=True)
+            st.dataframe(df, width='stretch')
             
             # Summary statistics
             st.markdown('<h3>📈 Summary Statistics</h3>', unsafe_allow_html=True)
@@ -327,7 +327,7 @@ def main():
         contacts_to_process = contacts[:max_contacts]
         
         # Process contacts
-        if st.button("🚀 Start Processing", type="primary", use_container_width=True):
+        if st.button("🚀 Start Processing", type="primary", width='stretch'):
             progress_bar = st.progress(0)
             results = []
             
@@ -345,11 +345,11 @@ def main():
                 # Action buttons
                 col1, col2, col3 = st.columns(3)
                 with col1:
-                    send_btn = st.button("📤 Send", key=f"send_{idx}", use_container_width=True)
+                    send_btn = st.button("📤 Send", key=f"send_{idx}", width='stretch')
                 with col2:
-                    draft_btn = st.button("📝 Draft", key=f"draft_{idx}", use_container_width=True)
+                    draft_btn = st.button("📝 Draft", key=f"draft_{idx}", width='stretch')
                 with col3:
-                    skip_btn = st.button("⏭️ Skip", key=f"skip_{idx}", use_container_width=True)
+                    skip_btn = st.button("⏭️ Skip", key=f"skip_{idx}", width='stretch')
                 
                 # Handle action
                 if send_btn:
@@ -404,7 +404,7 @@ def main():
             # Summary
             st.markdown('<h2 class="section-header">📊 Batch Summary</h2>', unsafe_allow_html=True)
             summary_df = pd.DataFrame(results)
-            st.dataframe(summary_df, use_container_width=True)
+            st.dataframe(summary_df, width='stretch')
             
             sent_count = sum(1 for r in results if r["status"] == "sent")
             st.markdown(f'<div class="success-box">✅ Processed {len(results)} contacts: {sent_count} sent</div>', unsafe_allow_html=True)
@@ -461,7 +461,7 @@ def main():
                     st.markdown(f'<div class="info-box">... and {len(contacts) - 5} more contacts</div>', unsafe_allow_html=True)
                 
                 # Option to save
-                if st.button("💾 Save as contacts.json", use_container_width=True):
+                if st.button("💾 Save as contacts.json", width='stretch'):
                     with open("contacts.json", "w") as f:
                         json.dump(contacts, f, indent=2)
                     st.markdown('<div class="success-box">✅ Saved to contacts.json</div>', unsafe_allow_html=True)
