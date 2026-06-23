@@ -1,0 +1,15 @@
+[
+  {
+    "recipient_email": "test@example.com",
+    "recipient_name": "Test User",
+    "company": "Test Company",
+    "role": "Software Engineer",
+    "job_url": "https://example.com/jobs/engineer",
+    "personalization_note": "Company recently launched AI product",
+    "candidate_name": "Your Name",
+    "candidate_background": "Python developer with ML experience",
+    "portfolio_url": "https://github.com/yourname",
+    "linkedin_url": "https://linkedin.com/in/yourname",
+    "resume_link": "https://drive.google.com/your-resume"
+  }
+]

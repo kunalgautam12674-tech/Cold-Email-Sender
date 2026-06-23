@@ -206,7 +206,9 @@ def load_config_safe():
     try:
         return load_config()
     except Exception as e:
-        st.error(f"Failed to load configuration: {e}")
+        st.error(f"Configuration error: {e}")
+        st.info("Please ensure all environment variables are set in Streamlit Cloud Secrets.")
+        st.info("Required variables: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, SENDER_NAME")
         return None
 
 
@@ -309,8 +311,12 @@ def main():
         
         # Load contacts
         if config.input_path and os.path.exists(config.input_path):
-            contacts = load_targets(config.input_path)
-            st.markdown(f'<div class="success-box">✅ Loaded {len(contacts)} contacts from {config.input_path}</div>', unsafe_allow_html=True)
+            try:
+                contacts = load_targets(config.input_path)
+                st.markdown(f'<div class="success-box">✅ Loaded {len(contacts)} contacts from {config.input_path}</div>', unsafe_allow_html=True)
+            except Exception as e:
+                st.markdown(f'<div class="error-box">❌ Error loading contacts: {e}</div>', unsafe_allow_html=True)
+                contacts = []
         else:
             st.markdown('<div class="info-box">ℹ️ No input file configured. Please upload contacts in the "Upload Contacts" page.</div>', unsafe_allow_html=True)
             contacts = []
