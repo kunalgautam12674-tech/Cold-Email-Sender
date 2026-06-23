@@ -265,14 +265,20 @@ def display_log_file():
 
 def main():
     """Main Streamlit application."""
-    
-    # Header
-    st.markdown('<h1 class="main-header">📧 The Closer</h1>', unsafe_allow_html=True)
-    st.markdown('<p class="subtitle">Cold Email Writer + Send Bot</p>', unsafe_allow_html=True)
-    
-    # Load configuration
-    config = load_config_safe()
-    if not config:
+    try:
+        # Header
+        st.markdown('<h1 class="main-header">📧 The Closer</h1>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitle">Cold Email Writer + Send Bot</p>', unsafe_allow_html=True)
+        
+        # Load configuration
+        config = load_config_safe()
+        if not config:
+            st.error("Failed to load configuration. Please check environment variables.")
+            st.stop()
+    except Exception as e:
+        st.error(f"Startup error: {e}")
+        import traceback
+        st.error(traceback.format_exc())
         st.stop()
     
     # Sidebar for settings
