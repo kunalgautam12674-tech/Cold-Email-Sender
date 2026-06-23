@@ -29,24 +29,29 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS - Modern, animated design with gradients and effects
+# Custom CSS - Dark theme with high contrast and modern typography
 st.markdown("""
 <style>
-    /* Global styles with animated gradient background */
+    /* Import modern fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    
+    /* Global dark theme styles */
     .stApp {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
         min-height: 100vh;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     
-    /* Main content area with glass effect */
+    /* Main content area with dark glass effect */
     .main .block-container {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 2rem;
-        margin: 1rem;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        background: rgba(15, 15, 35, 0.85);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        padding: 2.5rem;
+        margin: 1.5rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
         animation: fadeIn 0.8s ease-in;
+        border: 1px solid rgba(255, 255, 255, 0.08);
     }
     
     @keyframes fadeIn {
@@ -54,17 +59,19 @@ st.markdown("""
         to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Header styling with gradient text */
+    /* Header styling with neon gradient text */
     .main-header {
-        font-size: 3.5rem;
+        font-size: 4rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #f472b6 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         margin-bottom: 0.5rem;
         text-align: center;
         animation: slideIn 1s ease-out;
+        letter-spacing: -0.02em;
+        text-shadow: 0 0 40px rgba(124, 58, 237, 0.3);
     }
     
     @keyframes slideIn {
@@ -74,11 +81,12 @@ st.markdown("""
     
     .subtitle {
         font-size: 1.5rem;
-        color: #64748b;
+        color: #94a3b8;
         text-align: center;
-        margin-bottom: 2rem;
-        font-weight: 500;
+        margin-bottom: 2.5rem;
+        font-weight: 400;
         animation: fadeInUp 1s ease-out 0.3s both;
+        letter-spacing: -0.01em;
     }
     
     @keyframes fadeInUp {
@@ -86,29 +94,30 @@ st.markdown("""
         to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Card styling with hover effects */
+    /* Card styling with dark theme */
     .card {
-        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-        border-radius: 16px;
-        padding: 1.5rem;
+        background: linear-gradient(145deg, #1e1e3f 0%, #252550 100%);
+        border-radius: 20px;
+        padding: 1.75rem;
         margin: 1rem 0;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        border: 1px solid rgba(255,255,255,0.5);
-        transition: all 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+        border-color: rgba(124, 58, 237, 0.3);
     }
     
-    /* Email preview styling with animated border */
+    /* Email preview styling with neon effects */
     .email-preview {
-        background: linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%);
-        padding: 2rem;
-        border-radius: 16px;
-        margin: 1.5rem 0;
-        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
+        background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+        padding: 2.5rem;
+        border-radius: 20px;
+        margin: 2rem 0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
         border: 2px solid transparent;
         background-clip: padding-box;
         position: relative;
@@ -122,69 +131,73 @@ st.markdown("""
         left: 0;
         right: 0;
         bottom: 0;
-        border-radius: 16px;
+        border-radius: 20px;
         padding: 2px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #f472b6 100%);
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
     }
     
     @keyframes pulse {
-        0%, 100% { box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2); }
-        50% { box-shadow: 0 8px 40px rgba(102, 126, 234, 0.4); }
+        0%, 100% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(124, 58, 237, 0.2); }
+        50% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 30px rgba(124, 58, 237, 0.4); }
     }
     
     .email-preview h3 {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #f472b6 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         font-size: 1.75rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         font-weight: 700;
+        letter-spacing: -0.01em;
     }
     
     .email-preview p {
-        color: #374151;
+        color: #e2e8f0;
         font-size: 1.05rem;
-        line-height: 1.7;
+        line-height: 1.8;
         margin: 0.75rem 0;
+        font-weight: 400;
     }
     
     .email-preview strong {
-        color: #1e293b;
+        color: #f8fafc;
         font-weight: 700;
     }
     
     .email-preview hr {
         border: none;
         height: 2px;
-        background: linear-gradient(90deg, transparent, #667eea, transparent);
+        background: linear-gradient(90deg, transparent, #7c3aed, transparent);
         margin: 1.5rem 0;
     }
     
     .email-preview pre {
-        background: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%);
-        padding: 1.25rem;
-        border-radius: 12px;
-        border: 1px solid #dee2e6;
+        background: linear-gradient(145deg, #0f0f23 0%, #1a1a2e 100%);
+        padding: 1.5rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
         font-size: 1.05rem;
         line-height: 1.7;
-        color: #374151;
+        color: #e2e8f0;
         white-space: pre-wrap;
         word-wrap: break-word;
+        font-family: 'JetBrains Mono', monospace;
     }
     
-    /* Success box with animation */
+    /* Success box with dark theme */
     .success-box {
-        background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-        border: 2px solid #28a745;
-        border-radius: 12px;
-        padding: 1.25rem;
+        background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+        border: 2px solid #10b981;
+        border-radius: 16px;
+        padding: 1.5rem;
         margin: 1rem 0;
-        color: #155724;
+        color: #d1fae5;
         animation: slideInRight 0.5s ease-out;
+        box-shadow: 0 8px 32px rgba(16, 185, 129, 0.2);
     }
     
     @keyframes slideInRight {
@@ -192,37 +205,40 @@ st.markdown("""
         to { opacity: 1; transform: translateX(0); }
     }
     
-    /* Warning box with animation */
+    /* Warning box with dark theme */
     .warning-box {
-        background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
-        border: 2px solid #ffc107;
-        border-radius: 12px;
-        padding: 1.25rem;
+        background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+        border: 2px solid #f59e0b;
+        border-radius: 16px;
+        padding: 1.5rem;
         margin: 1rem 0;
-        color: #856404;
+        color: #fef3c7;
         animation: slideInRight 0.5s ease-out;
+        box-shadow: 0 8px 32px rgba(245, 158, 11, 0.2);
     }
     
-    /* Info box with animation */
+    /* Info box with dark theme */
     .info-box {
-        background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
-        border: 2px solid #17a2b8;
-        border-radius: 12px;
-        padding: 1.25rem;
+        background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+        border: 2px solid #0ea5e9;
+        border-radius: 16px;
+        padding: 1.5rem;
         margin: 1rem 0;
-        color: #0c5460;
+        color: #e0f2fe;
         animation: slideInRight 0.5s ease-out;
+        box-shadow: 0 8px 32px rgba(14, 165, 233, 0.2);
     }
     
-    /* Error box with animation */
+    /* Error box with dark theme */
     .error-box {
-        background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
-        border: 2px solid #dc3545;
-        border-radius: 12px;
-        padding: 1.25rem;
+        background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+        border: 2px solid #ef4444;
+        border-radius: 16px;
+        padding: 1.5rem;
         margin: 1rem 0;
-        color: #721c24;
+        color: #fee2e2;
         animation: shake 0.5s ease-in-out;
+        box-shadow: 0 8px 32px rgba(239, 68, 68, 0.2);
     }
     
     @keyframes shake {
@@ -231,19 +247,21 @@ st.markdown("""
         75% { transform: translateX(10px); }
     }
     
-    /* Button styling with gradient and hover effects */
+    /* Button styling with neon gradient */
     .stButton > button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         color: white;
         border: none;
-        border-radius: 12px;
-        padding: 0.875rem 2rem;
+        border-radius: 16px;
+        padding: 1rem 2.5rem;
         font-size: 1.05rem;
         font-weight: 600;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 32px rgba(124, 58, 237, 0.4);
         position: relative;
         overflow: hidden;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: -0.01em;
     }
     
     .stButton > button::before {
@@ -253,7 +271,7 @@ st.markdown("""
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
         transition: left 0.5s;
     }
     
@@ -262,44 +280,61 @@ st.markdown("""
     }
     
     .stButton > button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        transform: translateY(-4px);
+        box-shadow: 0 16px 48px rgba(124, 58, 237, 0.6);
     }
     
     .stButton > button:active {
-        transform: translateY(-1px);
+        transform: translateY(-2px);
     }
     
-    /* Metric styling with gradient cards */
+    /* Metric styling with dark theme */
     .metric-card {
-        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-        border-radius: 16px;
-        padding: 2rem;
+        background: linear-gradient(145deg, #1e1e3f 0%, #252550 100%);
+        border-radius: 20px;
+        padding: 2.5rem;
         text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-        border: 1px solid rgba(255,255,255,0.5);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
     }
     
     .metric-card:hover {
         transform: scale(1.05);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+        border-color: rgba(124, 58, 237, 0.3);
     }
     
-    /* Sidebar styling with gradient */
-    .css-1d391kg {
-        background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    .metric-card h3 {
+        color: #94a3b8;
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
     }
     
-    /* Section headers with gradient underline */
-    .section-header {
-        font-size: 2rem;
+    .metric-card p {
+        color: #f8fafc;
         font-weight: 700;
-        color: #1e293b;
-        margin: 2rem 0 1.5rem 0;
-        padding-bottom: 0.75rem;
+    }
+    
+    /* Sidebar styling with dark gradient */
+    .css-1d391kg {
+        background: linear-gradient(180deg, #0f0f23 0%, #1a1a2e 100%);
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    /* Section headers with neon underline */
+    .section-header {
+        font-size: 2.25rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin: 2.5rem 0 1.5rem 0;
+        padding-bottom: 1rem;
         position: relative;
         animation: fadeIn 0.8s ease-out;
+        letter-spacing: -0.02em;
     }
     
     .section-header::after {
@@ -309,94 +344,137 @@ st.markdown("""
         left: 0;
         width: 100%;
         height: 4px;
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(90deg, #00d4ff 0%, #7c3aed 50%, #f472b6 100%);
         border-radius: 2px;
     }
     
-    /* Contact card with animated border */
+    /* Contact card with dark theme */
     .contact-card {
-        background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-        border-radius: 12px;
-        padding: 1.5rem;
+        background: linear-gradient(145deg, #1e1e3f 0%, #252550 100%);
+        border-radius: 16px;
+        padding: 1.75rem;
         margin: 1rem 0;
         border-left: 5px solid;
-        border-image: linear-gradient(180deg, #667eea 0%, #764ba2 100%) 1;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
+        border-image: linear-gradient(180deg, #00d4ff 0%, #7c3aed 50%, #f472b6 100%) 1;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .contact-card:hover {
-        transform: translateX(10px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        transform: translateX(12px);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     }
     
-    /* Progress bar styling */
+    /* Progress bar styling with neon */
     .stProgress > div > div > div {
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(90deg, #00d4ff 0%, #7c3aed 50%, #f472b6 100%);
     }
     
-    /* File uploader styling */
+    /* File uploader styling with dark theme */
     .stFileUploader {
-        border: 2px dashed #667eea;
-        border-radius: 12px;
-        padding: 2rem;
-        background: rgba(102, 126, 234, 0.05);
+        border: 2px dashed #7c3aed;
+        border-radius: 16px;
+        padding: 2.5rem;
+        background: rgba(124, 58, 237, 0.05);
         transition: all 0.3s ease;
     }
     
     .stFileUploader:hover {
-        background: rgba(102, 126, 234, 0.1);
-        border-color: #764ba2;
+        background: rgba(124, 58, 237, 0.1);
+        border-color: #a855f7;
     }
     
-    /* Expander styling */
+    /* Expander styling with dark theme */
     .streamlit-expanderHeader {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 8px;
-        padding: 0.75rem 1rem;
-        color: white;
+        background: linear-gradient(135deg, #1e1e3f 0%, #252550 100%);
+        border-radius: 12px;
+        padding: 1rem 1.5rem;
+        color: #f8fafc;
         font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.08);
     }
     
-    /* Dataframe styling */
+    /* Dataframe styling with dark theme */
     .stDataFrame {
-        border-radius: 12px;
+        border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.08);
     }
     
-    /* Radio button styling */
+    /* Radio button styling with dark theme */
     .stRadio > div {
-        background: rgba(255,255,255,0.9);
-        padding: 1rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        background: rgba(30, 30, 63, 0.8);
+        padding: 1.25rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.08);
     }
     
-    /* Select box styling */
+    /* Select box styling with dark theme */
     .stSelectbox > div > div {
-        background: rgba(255,255,255,0.9);
-        border-radius: 8px;
-        border: 1px solid #dee2e6;
+        background: rgba(30, 30, 63, 0.8);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #f8fafc;
     }
     
-    /* Text input styling */
+    /* Text input styling with dark theme */
     .stTextInput > div > div > input {
-        border-radius: 8px;
-        border: 1px solid #dee2e6;
-        padding: 0.75rem;
+        background: rgba(30, 30, 63, 0.8);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0.875rem;
+        color: #f8fafc;
     }
     
-    /* Text area styling */
+    /* Text area styling with dark theme */
     .stTextArea > div > div > textarea {
-        border-radius: 8px;
-        border: 1px solid #dee2e6;
-        padding: 0.75rem;
+        background: rgba(30, 30, 63, 0.8);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0.875rem;
+        color: #f8fafc;
     }
     
-    /* Loading animation */
+    /* Loading animation with neon */
     .stSpinner {
-        color: #667eea;
+        color: #7c3aed;
+    }
+    
+    /* Typography improvements */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        letter-spacing: -0.02em;
+    }
+    
+    p, span, div {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    /* High contrast text colors */
+    .stMarkdown, .stText {
+        color: #e2e8f0;
+    }
+    
+    /* Code styling */
+    code {
+        font-family: 'JetBrains Mono', monospace;
+        background: rgba(124, 58, 237, 0.1);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        color: #a855f7;
+    }
+    
+    /* Link styling */
+    a {
+        color: #00d4ff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    a:hover {
+        color: #7c3aed;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -535,33 +613,6 @@ def main():
     if page == "📝 Generate Emails":
         st.markdown('<h2 class="section-header">📝 Generate Emails</h2>', unsafe_allow_html=True)
         
-        # Animated stats cards
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.markdown(f"""
-            <div class="metric-card">
-                <h3 style="margin: 0; color: #667eea;">📧 Ready to Send</h3>
-                <p style="font-size: 2rem; font-weight: 700; margin: 0.5rem 0; color: #1e293b;">{len(contacts) if config.input_path and os.path.exists(config.input_path) else 0}</p>
-                <p style="margin: 0; color: #64748b;">Contacts Available</p>
-            </div>
-            """, unsafe_allow_html=True)
-        with col2:
-            st.markdown(f"""
-            <div class="metric-card">
-                <h3 style="margin: 0; color: #764ba2;">📊 Volume Cap</h3>
-                <p style="font-size: 2rem; font-weight: 700; margin: 0.5rem 0; color: #1e293b;">{config.max_outreach_per_run}</p>
-                <p style="margin: 0; color: #64748b;">Max Per Run</p>
-            </div>
-            """, unsafe_allow_html=True)
-        with col3:
-            st.markdown(f"""
-            <div class="metric-card">
-                <h3 style="margin: 0; color: #667eea;">🔒 Mode</h3>
-                <p style="font-size: 1.5rem; font-weight: 700; margin: 0.5rem 0; color: #1e293b;">{'DRY RUN' if config.dry_run else 'LIVE'}</p>
-                <p style="margin: 0; color: #64748b;">Current Status</p>
-            </div>
-            """, unsafe_allow_html=True)
-        
         # Load contacts with enhanced messaging
         if config.input_path and os.path.exists(config.input_path):
             try:
@@ -577,6 +628,33 @@ def main():
         else:
             st.markdown('<div class="info-box">ℹ️ No input file configured. Please upload contacts in the "Upload Contacts" page.</div>', unsafe_allow_html=True)
             contacts = []
+        
+        # Animated stats cards (moved after contacts loading)
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.markdown(f"""
+            <div class="metric-card">
+                <h3>📧 Ready to Send</h3>
+                <p style="font-size: 2.5rem; font-weight: 800; margin: 0.5rem 0;">{len(contacts)}</p>
+                <p>Contacts Available</p>
+            </div>
+            """, unsafe_allow_html=True)
+        with col2:
+            st.markdown(f"""
+            <div class="metric-card">
+                <h3>📊 Volume Cap</h3>
+                <p style="font-size: 2.5rem; font-weight: 800; margin: 0.5rem 0;">{config.max_outreach_per_run}</p>
+                <p>Max Per Run</p>
+            </div>
+            """, unsafe_allow_html=True)
+        with col3:
+            st.markdown(f"""
+            <div class="metric-card">
+                <h3>🔒 Mode</h3>
+                <p style="font-size: 2rem; font-weight: 800; margin: 0.5rem 0;">{'DRY RUN' if config.dry_run else 'LIVE'}</p>
+                <p>Current Status</p>
+            </div>
+            """, unsafe_allow_html=True)
         
         if not contacts:
             st.markdown("""
