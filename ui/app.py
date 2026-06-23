@@ -476,6 +476,65 @@ st.markdown("""
     a:hover {
         color: #7c3aed;
     }
+    
+    /* Streamlit native header dark theme */
+    .stAppHeader {
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    /* Streamlit native sidebar dark theme */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0f0f23 0%, #1a1a2e 100%);
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    /* Streamlit native sidebar text */
+    [data-testid="stSidebar"] * {
+        color: #f8fafc !important;
+    }
+    
+    /* Streamlit native header text */
+    .stAppHeader * {
+        color: #f8fafc !important;
+    }
+    
+    /* Email preview text visibility fix */
+    .email-preview * {
+        color: #e2e8f0 !important;
+    }
+    
+    .email-preview strong {
+        color: #f8fafc !important;
+    }
+    
+    .email-preview h3 {
+        color: #f8fafc !important;
+    }
+    
+    /* Fix for any markdown content in dark theme */
+    .stMarkdown {
+        color: #e2e8f0 !important;
+    }
+    
+    /* Fix for text elements */
+    .stText {
+        color: #e2e8f0 !important;
+    }
+    
+    /* Fix for captions and labels */
+    .stCaption {
+        color: #94a3b8 !important;
+    }
+    
+    /* Fix for metric labels */
+    [data-testid="stMetricValue"] {
+        color: #f8fafc !important;
+    }
+    
+    [data-testid="stMetricLabel"] {
+        color: #94a3b8 !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
